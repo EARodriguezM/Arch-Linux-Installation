@@ -70,7 +70,7 @@ CONFIGURE THE SYSTEM
 	127.0.1.1	ER.localdomain	ER (Ctrl+x and Yes)
 -Root password
 	passwd
-	(write passw) (Oracle password qw****ER**8*)
+	(write passw)
 	(Re write passw)
 
 FOR NEW SYSTEMS{
@@ -100,7 +100,7 @@ After Turn-On:
 -User
 	useradd -m -G wheel EARodriguezM
 	passwd EARodriguezM
-	(write passw) (kyG*****e0)
+	(write passw)
 	(Re write passw)
 	EDITOR=nano visudo
 	(Search wheel and delete hashtag and space)
