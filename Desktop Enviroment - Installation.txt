@@ -1,0 +1,28 @@
+XFCE:{
+
+-Display Manager
+	pacman -S lxdm
+	systemctl enable lxdm.service
+-Desktop install
+	pacman -S xfce4 xfce4-goodies pulseaudio pavucontrol xdg-user-dirs
+	(libjack.so=0-64 select jack2)
+-Reboot
+	reboot
+}
+
+DEEPIN:{
+
+-Display Manager
+	pacman -S lightdm
+	pacman -S light-locker accountsservice
+	systemctl enable lightdm
+	pacman -S pulseaudio pavucontrol
+	pacman -S gnu-free-fonts ttf-hack ttf-inconsolata gnome-font-viewer
+	pacman -S vlc gufw leafpad
+-Desktop install
+	pacman -S deepin deepin-extra
+	(enter all) (option 1)
+	systemctl enable lightdm
+-Reboot
+	reboot
+}

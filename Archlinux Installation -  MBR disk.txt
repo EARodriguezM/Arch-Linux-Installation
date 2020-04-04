@@ -1,0 +1,104 @@
+ARCH LINUX INSTALLATION:
+-Set the keyboard layout
+	loadkeys la-latin1
+-Verifying Internet Connection (Ethernet)
+	ip link
+	ping google.com (verifying connection. Ctrl+C for stop)
+-Update the system clock:
+	timedatectl set-ntp true
+	timedatectl status (Verifying update)
+-Partition Disk
+	lsblk
+	cfdisk (Delete all partitions)
+	fdisk /dev/sda
+	o
+	n
+	*enter*
+	*enter*
+	+80G       (system partition)
+	n
+	*enter*
+	*enter*
+	+216.1G    (home partition)
+	n
+	*enter*
+	*enter*
+	*enter*    (swap partition)
+	w
+	lsblk
+	cfdisk and do bootable the first parition
+	mkfs.ext4 /dev/sda1
+	mkfs.ext4 /dev/sda2
+	mount /dev/sda1 /mnt
+	mkdir /mnt/home
+	mount /dev/sda2 /mnt/home
+	mkswap /dev/sda3
+	swapon /dev/sda3
+-Select the mirrors
+	nano /etc/pacman.d/mirrorlist (Select close mirrors servers)
+-INSTALL
+	pacstrap /mnt base linux linux-firmware nano
+CONFIGURE THE SYSTEM
+-Fstab
+	genfstab -U /mnt >> /mnt/etc/fstab
+-Chroot
+	arch-chroot /mnt
+-Time zone
+	ln -sf /usr/share/zoneinfo/America/Bogota /etc/localtime
+	hwclock --systohc
+-Localization
+	locale-gen
+	nano /etc/locale.gen (delete hashtag that be localizated before the language)
+	locale-gen
+	nano /etc/locale.conf
+	LANG=en_US.UTF-8 (Ctrl+X and Yes)
+	nano /etc/vconsole.conf
+	KEYMAP=la-latin1 (Ctrl+x and Yes)
+-Network configuration
+	nano /etc/hostname
+	earodriguezm_laptop (Ctrl+x and Yes)
+	nano /etc/hosts
+	127.0.0.1	localhost (enter)
+	::1		localhost (enter)
+	127.0.1.1	earodriguezm_laptop.localdomain	earodriguezm_laptop (Ctrl+x and Yes)
+-Root password
+	passwd
+	(write passw) (Oracle password qw****ER**8*)
+	(Re write passw)
+
+FOR MBR SYSTEMS{
+	-Install package
+	pacman -S networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools linux-headers base-devel git
+	pacman -S grub
+	grub-install /dev/sda
+	grub-mkconfig -o /boot/grub/grub.cfg
+	exit
+}
+
+-Reboot
+	reboot (and plug-out the usb with ISO file)
+
+After Turn-On:
+	(login)
+	systemctl start NetworkManager
+	systemctl enable NetworkManager
+	ip a
+	(if you dont have an Ethernet cable, connect with wifi:
+	nmtui
+	*Activate connection and enter the password*)
+-User
+	useradd -m -G wheel EARodriguezM
+	passwd EARodriguezM
+	(write passw) (kyG*****e0)
+	(Re write passw)
+	EDITOR=nano visudo
+	(Search wheel and delete hashtag and space)
+-Graphics
+	pacman -S xf86-video-intel
+	pacman -S xf86-video-amdgpu
+	pacman -S nvidia nvidia-utils
+-Discplay server (XORG)
+	pacman -S xorg
+
+Now, go to install the desktop enviroment
+	
