@@ -63,11 +63,11 @@ CONFIGURE THE SYSTEM
 	KEYMAP=la-latin1 (Ctrl+x and Yes)
 -Network configuration
 	nano /etc/hostname
-	ER (Ctrl+x and Yes)
+	<your_hostname> (Ctrl+x and Yes)
 	nano /etc/hosts
 	127.0.0.1	localhost (enter)
 	::1		localhost (enter)
-	127.0.1.1	ER.localdomain	ER (Ctrl+x and Yes)
+	127.0.1.1	<your_hostname>.localdomain	<your_hostname> (Ctrl+x and Yes)
 -Root password
 	passwd
 	(write passw)
