@@ -4,7 +4,7 @@ XFCE:{
 	pacman -S lxdm
 	systemctl enable lxdm.service
 -Desktop install
-	pacman -S xfce4 xfce4-goodies pulseaudio pavucontrol xdg-user-dirs
+	pacman -S xfce4 xfce4-goodies pulseaudio pavucontrol xdg-user-dirs gvfs
 	(libjack.so=0-64 select jack2)
 -Reboot
 	reboot
